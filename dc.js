@@ -4906,6 +4906,7 @@ dc.pieChart = function (parent, chartGroup) {
         dc.transition(polyline, _chart.transitionDuration())
             .attrTween('points', function (d) {
                 this._current = this._current || d;
+                var old = this._current;
                 var interpolate = d3.interpolate(this._current, d);
                 this._current = interpolate(0);
                 return function (t) {
