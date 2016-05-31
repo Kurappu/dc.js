@@ -543,7 +543,8 @@ describe('dc.pieChart', function () {
             });
             describe('with emptyTitle', function () {
                 beforeEach(function () {
-                    chart.emptyTitle('nothing').render();
+                    chart.emptyTitle('nothing')
+                        .render();
                 });
                 it('should respect the emptyTitle', function () {
                     expect(d3.select(chart.selectAll('text.pie-slice')[0][0]).text()).toEqual('nothing');
@@ -554,7 +555,8 @@ describe('dc.pieChart', function () {
             });
             describe('with emptyValue', function () {
                 beforeEach(function () {
-                    chart.emptyValue(5).render();
+                    chart.emptyValue(5)
+                        .render();
                 });
                 it('should respect the emptyValue', function () {
                     expect(chart.selectAll('text.pie-slice').data().map(dc.pluck('value'))[0]).toEqual(5);
@@ -565,14 +567,12 @@ describe('dc.pieChart', function () {
             });
             describe('with emptyValue as object', function () {
                 beforeEach(function () {
-                    chart.valueAccessor(dc.pluck('value', function (x) {
-                        return x.value;
-                    }))
-                    .emptyValue({value: 1})
-                    .render();
+                    chart.valueAccessor(dc.pluck('value', dc.pluck('baseValue')))
+                        .emptyValue({baseValue: 1})
+                        .render();
                 });
                 it('should respect the emptyValue', function () {
-                    expect(chart.selectAll('text.pie-slice').data()[0].data.value).toEqual({value: 1});
+                    expect(chart.selectAll('text.pie-slice').data()[0].data.value).toEqual({baseValue: 1});
                 });
                 afterEach(function () {
                     chart.valueAccessor(dc.pluck('value'))
