@@ -29,6 +29,7 @@ dc.pieChart = function (parent, chartGroup) {
     var _sliceCssClass = 'pie-slice';
     var _emptyCssClass = 'empty-chart';
     var _emptyTitle = 'empty';
+    var _emptyValue = 1;
 
     var _radius,
         _givenRadius, // specified radius, if any
@@ -93,7 +94,7 @@ dc.pieChart = function (parent, chartGroup) {
         } else {
             // otherwise we'd be getting NaNs, so override
             // note: abuse others for its ignoring the value accessor
-            pieData = pie([{key: _emptyTitle, value: 1, others: [_emptyTitle]}]);
+            pieData = pie([{key: _emptyTitle, value: _emptyValue, others: [_emptyTitle]}]);
             _g.classed(_emptyCssClass, true);
         }
 
@@ -478,6 +479,23 @@ dc.pieChart = function (parent, chartGroup) {
             return _emptyTitle;
         }
         _emptyTitle = title;
+        return _chart;
+    };
+
+    /**
+     * Value to use for the only slice when there is no data.
+     * @method emptyValue
+     * @memberof dc.pieChart
+     * @instance
+     * @param {String} [value]
+     * @return {String}
+     * @return {dc.pieChart}
+     */
+    _chart.emptyValue = function (value) {
+        if (arguments.length === 0) {
+            return _emptyValue;
+        }
+        _emptyValue = value;
         return _chart;
     };
 
