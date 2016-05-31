@@ -552,6 +552,33 @@ describe('dc.pieChart', function () {
                     chart.emptyTitle('empty');
                 });
             });
+            describe('with emptyValue', function () {
+                beforeEach(function () {
+                    chart.emptyValue(5).render();
+                });
+                it('should respect the emptyValue', function () {
+                    expect(chart.selectAll('text.pie-slice').data().map(dc.pluck('value'))[0]).toEqual(5);
+                });
+                afterEach(function () {
+                    chart.emptyValue(1);
+                });
+            });
+            describe('with emptyValue as object', function () {
+                beforeEach(function () {
+                    chart.valueAccessor(dc.pluck('value', function (x) {
+                        return x.value;
+                    }))
+                    .emptyValue({value: 1})
+                    .render();
+                });
+                it('should respect the emptyValue', function () {
+                    expect(chart.selectAll('text.pie-slice').data()[0].data.value).toEqual({value: 1});
+                });
+                afterEach(function () {
+                    chart.valueAccessor(dc.pluck('value'))
+                        .emptyValue(1);
+                });
+            });
             afterEach(function () {
                 regionDimension.filterAll();
             });
@@ -674,4 +701,3 @@ describe('dc.pieChart', function () {
         });
     });
 });
-
