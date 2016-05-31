@@ -94,7 +94,7 @@ dc.pieChart = function (parent, chartGroup) {
         } else {
             // otherwise we'd be getting NaNs, so override
             // note: abuse others for its ignoring the value accessor
-            pieData = pie([{key: _emptyTitle, value: _emptyValue, others: [_emptyTitle]}]);
+            pieData = pie([{key: _emptyTitle, value: _emptyValue}]);
             _g.classed(_emptyCssClass, true);
         }
 
