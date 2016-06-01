@@ -488,8 +488,8 @@ dc.pieChart = function (parent, chartGroup) {
      * @method emptyValue
      * @memberof dc.pieChart
      * @instance
-     * @param {String} [value]
-     * @return {String}
+     * @param {*} [value]
+     * @return {*}
      * @return {dc.pieChart}
      */
     _chart.emptyValue = function (value) {
@@ -501,12 +501,12 @@ dc.pieChart = function (parent, chartGroup) {
     };
 
     /**
-     * Value to use for the only slice when there is no data.
+     * Others to use for the only slice when there is no data.
      * @method emptyOthers
      * @memberof dc.pieChart
      * @instance
-     * @param {String} [others]
-     * @return {String}
+     * @param {Array} [others]
+     * @return {Array}
      * @return {dc.pieChart}
      */
     _chart.emptyOthers = function (others) {
