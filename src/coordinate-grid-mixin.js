@@ -1191,10 +1191,13 @@ dc.coordinateGridMixin = function (_chart) {
             .size([_chart.width(), _chart.height()])
             .duration(_chart.transitionDuration());
         _chart.root().call(_zoom)
-            .on('mousedown.zoom', null)
-            .on('touchstart.zoom', null)
-            .on('touchmove.zoom', null)
-            .on('touchend.zoom', null);
+            .on('mousedown.zoom', test.bind(this, 'mousedown.zoom'))
+            .on('touchstart.zoom', test.bind(this, 'touchstart.zoom'))
+            .on('touchmove.zoom', test.bind(this, 'touchmove.zoom'))
+            .on('touchend.zoom', test.bind(this, 'touchend.zoom'));
+        function test (arg) {
+            console.log('Heyo: ' + arg);
+        }
     };
 
     _chart._disableMouseZoom = function () {
